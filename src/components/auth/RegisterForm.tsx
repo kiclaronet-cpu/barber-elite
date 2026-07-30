@@ -90,21 +90,12 @@ export default function RegisterForm() {
       return
     }
 
-    const { error: profileError } = await supabase.from('profiles').insert({
-      id: data.user.id,
-      name: form.name,
-      email: form.email,
-      phone: form.phone,
-      role: 'cliente',
-    })
-
-    if (profileError) {
-      setError('Erro ao criar perfil. Tente novamente.')
+    if (data.session) {
+      router.push('/cliente')
+    } else {
+      setError('Conta criada! Verifique seu email para confirmar o cadastro.')
       setLoading(false)
-      return
     }
-
-    router.push('/cliente')
   }
 
   return (
