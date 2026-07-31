@@ -1,0 +1,705 @@
+{
+  "push_subscriptions": [
+    {
+      "id": "9d594985-ed5e-4839-b322-0372b1233f32",
+      "user_id": "972093ad-6290-4aad-a5fe-dd87fd761e21",
+      "endpoint": "https://fcm.googleapis.com/fcm/send/ez0Q7vkXBBs:APA91bH94u9YASVQTQl8xl371xnQ14hIlZWeH8tmz4IEu3ljB0jsAFB_jz0_xsjouIgMukXKNivoI8D6GDD9Lf2FEqun7K_mlnxphzl2z6svAgXAvBJpOxMD9mzDZ-ePvCcAHkCW-Ggt",
+      "p256dh": "BBrYjs8KASE4SGnwzt5MKpNgcv8FfL_29LBDezfD3b_Xc1uWF9wB4AAtlpAzpzqnV4cZOzXLbO6bjURW3_7euoU",
+      "auth": "RQpqJJ29v2ykuPv_Zy_1Ag",
+      "created_at": "2026-07-31T16:32:39.835669+00:00"
+    },
+    {
+      "id": "87d1a3b8-8e9b-4132-a201-f3265e32a99e",
+      "user_id": "9d971aa6-ad41-4658-b5a2-e072fdb51f8c",
+      "endpoint": "https://fcm.googleapis.com/fcm/send/fLQzOXVIMBw:APA91bE5sNV9ZuvmZZbgcXA9m-tyg-Xb9r00d_JH1xOHaLyZ_hReiRmbZr-X4ILt0IGbj3gQ-KIpDhPjbVl08PRdduW3INZ-_DGaqmnkic5uRvtKksBwh3ich4n95M9c4A7WEN-lvc6w",
+      "p256dh": "BCzXaiUjLw8ImBHXFqeWQtmca2OjLRCBGBXbmljNmVai7EDg6BYvlm7lozZZBwATUYbtFbhKEvJiTsELxQ8rtAM",
+      "auth": "FW6we50sOHi29GN3EbtE9Q",
+      "created_at": "2026-07-31T17:25:55.02396+00:00"
+    }
+  ],
+  "blocked_slots": [],
+  "notifications": [],
+  "barber_availability": [
+    {
+      "id": "829ba3b8-03c8-44ee-b7fb-9dd2259cbe07",
+      "barber_id": "171d6da7-a9c2-4dcf-b95d-321c321b8768",
+      "day_of_week": 0,
+      "start_time": "09:00:00",
+      "end_time": "13:00:00",
+      "active": true
+    },
+    {
+      "id": "6b382202-2bc7-4d65-8161-e25e52f4da98",
+      "barber_id": "171d6da7-a9c2-4dcf-b95d-321c321b8768",
+      "day_of_week": 1,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "1a927fef-cd5c-4094-b680-5a8f03111b5b",
+      "barber_id": "171d6da7-a9c2-4dcf-b95d-321c321b8768",
+      "day_of_week": 2,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "5cd22599-d9b6-4e8e-89d8-18f4d7c01682",
+      "barber_id": "171d6da7-a9c2-4dcf-b95d-321c321b8768",
+      "day_of_week": 3,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "6eae4ab5-5635-47bf-8a95-a6766822f0ee",
+      "barber_id": "171d6da7-a9c2-4dcf-b95d-321c321b8768",
+      "day_of_week": 4,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "d1a34f17-acd1-41ab-be77-bf8fa4b189dc",
+      "barber_id": "171d6da7-a9c2-4dcf-b95d-321c321b8768",
+      "day_of_week": 5,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "b2e16521-8ee4-4ee2-8f8d-32e51e97e0ba",
+      "barber_id": "171d6da7-a9c2-4dcf-b95d-321c321b8768",
+      "day_of_week": 6,
+      "start_time": "09:00:00",
+      "end_time": "18:00:00",
+      "active": true
+    },
+    {
+      "id": "61d983a4-608f-46f2-bf61-f408987472f5",
+      "barber_id": "c9e1d85d-f1da-4fbc-b900-f279fd527d00",
+      "day_of_week": 0,
+      "start_time": "09:00:00",
+      "end_time": "13:00:00",
+      "active": true
+    },
+    {
+      "id": "4bde31ef-c091-46d9-bacd-b2e2307ce8b3",
+      "barber_id": "c9e1d85d-f1da-4fbc-b900-f279fd527d00",
+      "day_of_week": 1,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "f36a900f-65b3-4d5d-9cdf-8d40f7169a8e",
+      "barber_id": "c9e1d85d-f1da-4fbc-b900-f279fd527d00",
+      "day_of_week": 2,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "5f789c7d-21de-4f0f-9c54-6d2ded4767cd",
+      "barber_id": "c9e1d85d-f1da-4fbc-b900-f279fd527d00",
+      "day_of_week": 3,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "8cdafe26-f101-4863-aa62-04a52855cfa3",
+      "barber_id": "c9e1d85d-f1da-4fbc-b900-f279fd527d00",
+      "day_of_week": 4,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "536af443-f4b0-41b5-a617-b472e25f9975",
+      "barber_id": "c9e1d85d-f1da-4fbc-b900-f279fd527d00",
+      "day_of_week": 5,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "a8c4a2d7-f68e-46f5-9c16-0f8600ce6bf2",
+      "barber_id": "c9e1d85d-f1da-4fbc-b900-f279fd527d00",
+      "day_of_week": 6,
+      "start_time": "09:00:00",
+      "end_time": "18:00:00",
+      "active": true
+    },
+    {
+      "id": "6cb8b450-65c7-4dd4-94b1-6b0ff973823d",
+      "barber_id": "77be39a6-0a20-4f70-896d-bc685b49e681",
+      "day_of_week": 0,
+      "start_time": "09:00:00",
+      "end_time": "13:00:00",
+      "active": true
+    },
+    {
+      "id": "fd9250c6-0c65-4bb2-97df-ca1286e7b127",
+      "barber_id": "77be39a6-0a20-4f70-896d-bc685b49e681",
+      "day_of_week": 1,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "b75503b7-002a-4803-840b-bdd08e74bdf9",
+      "barber_id": "77be39a6-0a20-4f70-896d-bc685b49e681",
+      "day_of_week": 2,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "46522973-5dc5-43e8-acd5-863901da7964",
+      "barber_id": "77be39a6-0a20-4f70-896d-bc685b49e681",
+      "day_of_week": 3,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "eb9feba5-5511-4407-90f6-17fdfd87f39f",
+      "barber_id": "77be39a6-0a20-4f70-896d-bc685b49e681",
+      "day_of_week": 4,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "d1a2c485-892b-49e3-b88a-11c3786baaf4",
+      "barber_id": "77be39a6-0a20-4f70-896d-bc685b49e681",
+      "day_of_week": 5,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "c52f01ed-c09f-4bf6-8528-3a4a404fae5d",
+      "barber_id": "77be39a6-0a20-4f70-896d-bc685b49e681",
+      "day_of_week": 6,
+      "start_time": "09:00:00",
+      "end_time": "18:00:00",
+      "active": true
+    },
+    {
+      "id": "94b63133-bdbb-4ec7-b093-9b9ffb27096d",
+      "barber_id": "5241fb6c-5487-47a0-a88a-0c0bdf343d4e",
+      "day_of_week": 0,
+      "start_time": "09:00:00",
+      "end_time": "13:00:00",
+      "active": true
+    },
+    {
+      "id": "488a8c46-7afd-425b-a770-3b7333f7d798",
+      "barber_id": "5241fb6c-5487-47a0-a88a-0c0bdf343d4e",
+      "day_of_week": 1,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "6d06e4ac-e6b1-4c63-bfc0-42c2ba1e544d",
+      "barber_id": "5241fb6c-5487-47a0-a88a-0c0bdf343d4e",
+      "day_of_week": 2,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "bb290111-b1ac-4110-b3d0-d41adc130bc3",
+      "barber_id": "5241fb6c-5487-47a0-a88a-0c0bdf343d4e",
+      "day_of_week": 3,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "f821207e-56ed-4275-a0c8-a5c698213d98",
+      "barber_id": "5241fb6c-5487-47a0-a88a-0c0bdf343d4e",
+      "day_of_week": 4,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "beb5c665-de94-4a20-88af-f6ed13bf8666",
+      "barber_id": "5241fb6c-5487-47a0-a88a-0c0bdf343d4e",
+      "day_of_week": 5,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "b819abc0-d3ba-41b7-a932-b5063641da9d",
+      "barber_id": "5241fb6c-5487-47a0-a88a-0c0bdf343d4e",
+      "day_of_week": 6,
+      "start_time": "09:00:00",
+      "end_time": "18:00:00",
+      "active": true
+    },
+    {
+      "id": "cb061165-7ff1-43ca-9998-20954ac1876f",
+      "barber_id": "dbb91f79-d01c-4348-b6b9-f042637f35e3",
+      "day_of_week": 0,
+      "start_time": "09:00:00",
+      "end_time": "13:00:00",
+      "active": true
+    },
+    {
+      "id": "efa6e094-b46d-42c3-b88d-0048d554b72c",
+      "barber_id": "dbb91f79-d01c-4348-b6b9-f042637f35e3",
+      "day_of_week": 1,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "4f0fa20a-e5bc-4ca2-8692-0410d33e8ffa",
+      "barber_id": "dbb91f79-d01c-4348-b6b9-f042637f35e3",
+      "day_of_week": 2,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "e610a552-c759-4ff7-adfe-1ec3f4969f84",
+      "barber_id": "dbb91f79-d01c-4348-b6b9-f042637f35e3",
+      "day_of_week": 3,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "960614a5-729e-4007-981f-c6c7d59cd20f",
+      "barber_id": "dbb91f79-d01c-4348-b6b9-f042637f35e3",
+      "day_of_week": 4,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "c34986d1-683d-4060-9659-b2e4509e6bf3",
+      "barber_id": "dbb91f79-d01c-4348-b6b9-f042637f35e3",
+      "day_of_week": 5,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "550890f7-9e4c-4c71-8b56-06d7ff6892a6",
+      "barber_id": "dbb91f79-d01c-4348-b6b9-f042637f35e3",
+      "day_of_week": 6,
+      "start_time": "09:00:00",
+      "end_time": "18:00:00",
+      "active": true
+    },
+    {
+      "id": "a0428360-87bb-4676-b7fc-103bffd8a3d4",
+      "barber_id": "1b4674af-076e-4575-96a0-7add89658faf",
+      "day_of_week": 0,
+      "start_time": "09:00:00",
+      "end_time": "13:00:00",
+      "active": true
+    },
+    {
+      "id": "2967fc12-585e-4e0f-8e07-49d2e777acf1",
+      "barber_id": "1b4674af-076e-4575-96a0-7add89658faf",
+      "day_of_week": 2,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "df7d0df8-a877-4e9c-a6ea-6b0ae50399e6",
+      "barber_id": "1b4674af-076e-4575-96a0-7add89658faf",
+      "day_of_week": 3,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "db79a9d5-c772-49e0-aa1e-2338cc858c92",
+      "barber_id": "1b4674af-076e-4575-96a0-7add89658faf",
+      "day_of_week": 4,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    },
+    {
+      "id": "03056f34-9934-43c0-a7b1-435425a6978f",
+      "barber_id": "1b4674af-076e-4575-96a0-7add89658faf",
+      "day_of_week": 5,
+      "start_time": "11:00:00",
+      "end_time": "00:00:00",
+      "active": true
+    },
+    {
+      "id": "39d71d15-89b5-48f3-ac06-4da7ad15a97e",
+      "barber_id": "1b4674af-076e-4575-96a0-7add89658faf",
+      "day_of_week": 6,
+      "start_time": "09:00:00",
+      "end_time": "18:00:00",
+      "active": true
+    },
+    {
+      "id": "51c28278-bba7-4443-8146-7b955a504af1",
+      "barber_id": "1b4674af-076e-4575-96a0-7add89658faf",
+      "day_of_week": 1,
+      "start_time": "09:00:00",
+      "end_time": "20:00:00",
+      "active": true
+    }
+  ],
+  "services": [
+    {
+      "id": "bc6b9d0b-356c-4b05-b752-c39ef24202bb",
+      "name": "Corte Premium",
+      "description": "Corte personalizado com tesoura e máquina, finalização com produtos premium",
+      "price": 65,
+      "duration": 45,
+      "image": null,
+      "active": true,
+      "created_at": "2026-07-30T04:36:27.533081+00:00",
+      "updated_at": "2026-07-30T04:36:27.533081+00:00"
+    },
+    {
+      "id": "5e11c458-1309-4955-97b7-3b87be5e2671",
+      "name": "Barba Completa",
+      "description": "Barba feita com navalha, toalha quente, balm e pós-barba",
+      "price": 45,
+      "duration": 30,
+      "image": null,
+      "active": true,
+      "created_at": "2026-07-30T04:36:27.533081+00:00",
+      "updated_at": "2026-07-30T04:36:27.533081+00:00"
+    },
+    {
+      "id": "a76da4b5-162e-402f-846d-888c6812b0e0",
+      "name": "Combo Corte + Barba",
+      "description": "Nosso combo mais popular: corte premium + barba completa",
+      "price": 95,
+      "duration": 90,
+      "image": null,
+      "active": true,
+      "created_at": "2026-07-30T04:36:27.533081+00:00",
+      "updated_at": "2026-07-30T04:36:27.533081+00:00"
+    },
+    {
+      "id": "b59dc204-f5a6-4467-a6a9-1852e12d592e",
+      "name": "Hidratação Capilar",
+      "description": "Tratamento profundo com queratina e óleos essenciais",
+      "price": 55,
+      "duration": 35,
+      "image": null,
+      "active": true,
+      "created_at": "2026-07-30T04:36:27.533081+00:00",
+      "updated_at": "2026-07-30T04:36:27.533081+00:00"
+    },
+    {
+      "id": "f06530c5-acf5-4963-9563-90197757c9fe",
+      "name": "Pigmentação",
+      "description": "Disfarce de fios brancos com pigmentação natural",
+      "price": 70,
+      "duration": 40,
+      "image": null,
+      "active": true,
+      "created_at": "2026-07-30T04:36:27.533081+00:00",
+      "updated_at": "2026-07-30T04:36:27.533081+00:00"
+    },
+    {
+      "id": "ba8bf4ec-e1f7-4c8e-84a6-f5ba25cf61fe",
+      "name": "Corte Infantil",
+      "description": "Corte especial para crianças em ambiente lúdico",
+      "price": 45,
+      "duration": 30,
+      "image": null,
+      "active": true,
+      "created_at": "2026-07-30T04:36:27.533081+00:00",
+      "updated_at": "2026-07-30T04:36:27.533081+00:00"
+    },
+    {
+      "id": "970d3619-8af6-4166-b632-9a669008cfcf",
+      "name": "Sobrancelha",
+      "description": "Design de sobrancelha masculina com pinça e navalha",
+      "price": 25,
+      "duration": 15,
+      "image": null,
+      "active": true,
+      "created_at": "2026-07-30T04:36:27.533081+00:00",
+      "updated_at": "2026-07-30T04:36:27.533081+00:00"
+    },
+    {
+      "id": "25cfcf1a-267e-48fd-9754-219d483a1602",
+      "name": "Combo Completo",
+      "description": "Corte + barba + hidratação + sobrancelha",
+      "price": 150,
+      "duration": 120,
+      "image": null,
+      "active": true,
+      "created_at": "2026-07-30T04:36:27.533081+00:00",
+      "updated_at": "2026-07-30T04:36:27.533081+00:00"
+    }
+  ],
+  "barber_invites": [
+    {
+      "id": "17c7871e-f945-447a-839d-c343fd5c7118",
+      "email": "barbeiroteste@gmail.com",
+      "active": true,
+      "created_at": "2026-07-31T15:58:14.336287+00:00"
+    }
+  ],
+  "reviews": [],
+  "appointments": [
+    {
+      "id": "ec66c262-e526-41ec-984d-4f6acbcadd98",
+      "user_id": "972093ad-6290-4aad-a5fe-dd87fd761e21",
+      "barber_id": "77be39a6-0a20-4f70-896d-bc685b49e681",
+      "service_id": "b59dc204-f5a6-4467-a6a9-1852e12d592e",
+      "date": "2026-07-31",
+      "time": "14:50:00",
+      "end_time": "15:25:00",
+      "status": "completed",
+      "notes": null,
+      "created_at": "2026-07-31T16:38:53.622729+00:00",
+      "updated_at": "2026-07-31T16:40:47.925185+00:00",
+      "reminder_sent": false
+    }
+  ],
+  "site_config": [
+    {
+      "id": 1,
+      "logo_url": null,
+      "updated_at": "2026-07-31T03:38:06.148807+00:00"
+    }
+  ],
+  "barbers": [
+    {
+      "id": "171d6da7-a9c2-4dcf-b95d-321c321b8768",
+      "name": "Carlos Silva",
+      "photo": null,
+      "description": "Especialista em cortes clássicos e modernos com mais de 10 anos de experiência.",
+      "specialties": [
+        "Cortes Clássicos",
+        "Cortes Modernos",
+        "Barba Tradicional"
+      ],
+      "rating": 4.9,
+      "active": true,
+      "created_at": "2026-07-30T04:36:27.533081+00:00",
+      "updated_at": "2026-07-30T04:36:27.533081+00:00",
+      "user_id": null
+    },
+    {
+      "id": "c9e1d85d-f1da-4fbc-b900-f279fd527d00",
+      "name": "André Santos",
+      "photo": null,
+      "description": "Mestre barbeiro formado em Milão, referência em barba e navalha.",
+      "specialties": [
+        "Barba",
+        "Navalha",
+        "Corte Degradê"
+      ],
+      "rating": 4.8,
+      "active": true,
+      "created_at": "2026-07-30T04:36:27.533081+00:00",
+      "updated_at": "2026-07-30T04:36:27.533081+00:00",
+      "user_id": null
+    },
+    {
+      "id": "77be39a6-0a20-4f70-896d-bc685b49e681",
+      "name": "Rafael Oliveira",
+      "photo": null,
+      "description": "Expert em designs criativos e pigmentação capilar.",
+      "specialties": [
+        "Designs",
+        "Pigmentação",
+        "Corte Infantil"
+      ],
+      "rating": 4.9,
+      "active": true,
+      "created_at": "2026-07-30T04:36:27.533081+00:00",
+      "updated_at": "2026-07-30T04:36:27.533081+00:00",
+      "user_id": null
+    },
+    {
+      "id": "5241fb6c-5487-47a0-a88a-0c0bdf343d4e",
+      "name": "Lucas Costa",
+      "photo": null,
+      "description": "Especialista em colorimetria masculina e tratamentos capilares.",
+      "specialties": [
+        "Colorimetria",
+        "Hidratação",
+        "Corte Premium"
+      ],
+      "rating": 4.7,
+      "active": true,
+      "created_at": "2026-07-30T04:36:27.533081+00:00",
+      "updated_at": "2026-07-30T04:36:27.533081+00:00",
+      "user_id": null
+    },
+    {
+      "id": "dbb91f79-d01c-4348-b6b9-f042637f35e3",
+      "name": "Gabriel Martins",
+      "photo": null,
+      "description": "Jovem talento especializado em cortes contemporâneos e degradê.",
+      "specialties": [
+        "Degradê",
+        "Corte Social",
+        "Sobrancelha"
+      ],
+      "rating": 4.8,
+      "active": true,
+      "created_at": "2026-07-30T04:36:27.533081+00:00",
+      "updated_at": "2026-07-30T04:36:27.533081+00:00",
+      "user_id": null
+    },
+    {
+      "id": "c8600d5a-f3fc-437b-86bb-f02de05598cc",
+      "name": "Thiago batera ",
+      "photo": null,
+      "description": "Corte só masculino ",
+      "specialties": [
+        "Corte carinhoso com direito a tapinha"
+      ],
+      "rating": 0,
+      "active": true,
+      "created_at": "2026-07-31T13:15:19.32866+00:00",
+      "updated_at": "2026-07-31T14:19:57.347602+00:00",
+      "user_id": null
+    },
+    {
+      "id": "1b4674af-076e-4575-96a0-7add89658faf",
+      "name": "Barbeiro Teste",
+      "photo": null,
+      "description": null,
+      "specialties": [],
+      "rating": 0,
+      "active": true,
+      "created_at": "2026-07-31T16:00:32.356983+00:00",
+      "updated_at": "2026-07-31T16:00:32.356983+00:00",
+      "user_id": "e5afde60-77a8-4930-af02-278f142d1242"
+    }
+  ],
+  "profiles": [
+    {
+      "id": "7615272e-fe8a-478d-bb8c-06a8d65bec89",
+      "name": "Miqueias Lopes Ribeiro",
+      "email": "srmiqueiaslopes@gmail.com",
+      "phone": "(81) 98829-2421",
+      "avatar": null,
+      "role": "admin",
+      "created_at": "2026-07-30T05:12:01.897407+00:00",
+      "updated_at": "2026-07-31T00:23:51.606252+00:00"
+    },
+    {
+      "id": "e5afde60-77a8-4930-af02-278f142d1242",
+      "name": "Barbeiro Teste",
+      "email": "barbeiroteste@gmail.com",
+      "phone": null,
+      "avatar": null,
+      "role": "barbeiro",
+      "created_at": "2026-07-31T16:00:32.356983+00:00",
+      "updated_at": "2026-07-31T16:00:32.356983+00:00"
+    },
+    {
+      "id": "55dae356-6070-4736-bfd0-46f9288fbb79",
+      "name": "kanui Miqueias",
+      "email": "viajenex@gmail.com",
+      "phone": null,
+      "avatar": "https://lh3.googleusercontent.com/a/ACg8ocLFObVXvQmC0PLN0jYLTie0r8uwBFNRQ0xn7y4atQwUD8ZStA=s96-c",
+      "role": "cliente",
+      "created_at": "2026-07-31T16:13:18.341931+00:00",
+      "updated_at": "2026-07-31T16:13:18.341931+00:00"
+    },
+    {
+      "id": "76b9ed46-8bfb-447b-b60a-8132abe95df1",
+      "name": "cheng Lee",
+      "email": "leec16700@gmail.com",
+      "phone": null,
+      "avatar": "https://lh3.googleusercontent.com/a/ACg8ocJYGMZUHkn6bz_Es5txk1HosXKO98RLGdu_5J56o7O2n5yWOg=s96-c",
+      "role": "cliente",
+      "created_at": "2026-07-31T16:18:40.396834+00:00",
+      "updated_at": "2026-07-31T16:18:40.396834+00:00"
+    },
+    {
+      "id": "972093ad-6290-4aad-a5fe-dd87fd761e21",
+      "name": "Cassia Cibele",
+      "email": "cassiacibe@gmail.com",
+      "phone": "81988292421",
+      "avatar": "https://lh3.googleusercontent.com/a/ACg8ocKKi2CioAvN9JtUj0TUteTFBtSWgoirokq3KI-HCD96O78YerDl=s96-c",
+      "role": "cliente",
+      "created_at": "2026-07-31T16:32:31.985513+00:00",
+      "updated_at": "2026-07-31T17:15:29.130699+00:00"
+    },
+    {
+      "id": "9d971aa6-ad41-4658-b5a2-e072fdb51f8c",
+      "name": "Thiago Silva",
+      "email": "thiagobarrosbatera@gmail.com",
+      "phone": null,
+      "avatar": "https://lh3.googleusercontent.com/a/ACg8ocIz3hh9dNjDZuPai06-PALX_kMaaTPqzHw8S9g2aIAZum8FISd_=s96-c",
+      "role": "cliente",
+      "created_at": "2026-07-31T17:25:33.594083+00:00",
+      "updated_at": "2026-07-31T17:25:33.594083+00:00"
+    }
+  ],
+  "promotions": [],
+  "business_hours": [
+    {
+      "id": 1,
+      "day_of_week": 0,
+      "open_time": "09:00:00",
+      "close_time": "13:00:00",
+      "closed": false
+    },
+    {
+      "id": 2,
+      "day_of_week": 1,
+      "open_time": "09:00:00",
+      "close_time": "20:00:00",
+      "closed": false
+    },
+    {
+      "id": 3,
+      "day_of_week": 2,
+      "open_time": "09:00:00",
+      "close_time": "20:00:00",
+      "closed": false
+    },
+    {
+      "id": 4,
+      "day_of_week": 3,
+      "open_time": "09:00:00",
+      "close_time": "20:00:00",
+      "closed": false
+    },
+    {
+      "id": 5,
+      "day_of_week": 4,
+      "open_time": "09:00:00",
+      "close_time": "20:00:00",
+      "closed": false
+    },
+    {
+      "id": 6,
+      "day_of_week": 5,
+      "open_time": "11:00:00",
+      "close_time": "00:00:00",
+      "closed": false
+    },
+    {
+      "id": 7,
+      "day_of_week": 6,
+      "open_time": "09:00:00",
+      "close_time": "18:00:00",
+      "closed": false
+    }
+  ],
+  "favorites": []
+}

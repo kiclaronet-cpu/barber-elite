@@ -1,0 +1,188 @@
+[
+  {
+    "id": "9d971aa6-ad41-4658-b5a2-e072fdb51f8c",
+    "aud": "authenticated",
+    "role": "authenticated",
+    "email": "thiagobarrosbatera@gmail.com",
+    "email_confirmed_at": "2026-07-31T17:25:33.625761Z",
+    "phone": "",
+    "confirmed_at": "2026-07-31T17:25:33.625761Z",
+    "last_sign_in_at": "2026-07-31T17:25:34.200126Z",
+    "app_metadata": {
+      "provider": "google",
+      "providers": [
+        "google"
+      ]
+    },
+    "user_metadata": {
+      "avatar_url": "https://lh3.googleusercontent.com/a/ACg8ocIz3hh9dNjDZuPai06-PALX_kMaaTPqzHw8S9g2aIAZum8FISd_=s96-c",
+      "email": "thiagobarrosbatera@gmail.com",
+      "email_verified": true,
+      "full_name": "Thiago Silva",
+      "iss": "https://accounts.google.com",
+      "name": "Thiago Silva",
+      "phone_verified": false,
+      "picture": "https://lh3.googleusercontent.com/a/ACg8ocIz3hh9dNjDZuPai06-PALX_kMaaTPqzHw8S9g2aIAZum8FISd_=s96-c",
+      "provider_id": "107180095064766601823",
+      "sub": "107180095064766601823"
+    },
+    "identities": null,
+    "created_at": "2026-07-31T17:25:33.602467Z",
+    "updated_at": "2026-07-31T17:25:34.207234Z",
+    "is_anonymous": false
+  },
+  {
+    "id": "972093ad-6290-4aad-a5fe-dd87fd761e21",
+    "aud": "authenticated",
+    "role": "authenticated",
+    "email": "cassiacibe@gmail.com",
+    "email_confirmed_at": "2026-07-31T16:32:32.003749Z",
+    "phone": "",
+    "confirmed_at": "2026-07-31T16:32:32.003749Z",
+    "last_sign_in_at": "2026-07-31T17:14:14.362732Z",
+    "app_metadata": {
+      "provider": "google",
+      "providers": [
+        "google"
+      ]
+    },
+    "user_metadata": {
+      "avatar_url": "https://lh3.googleusercontent.com/a/ACg8ocKKi2CioAvN9JtUj0TUteTFBtSWgoirokq3KI-HCD96O78YerDl=s96-c",
+      "email": "cassiacibe@gmail.com",
+      "email_verified": true,
+      "full_name": "Cassia Cibele",
+      "iss": "https://accounts.google.com",
+      "name": "Cassia Cibele",
+      "phone_verified": false,
+      "picture": "https://lh3.googleusercontent.com/a/ACg8ocKKi2CioAvN9JtUj0TUteTFBtSWgoirokq3KI-HCD96O78YerDl=s96-c",
+      "provider_id": "101343025447299984943",
+      "sub": "101343025447299984943"
+    },
+    "identities": null,
+    "created_at": "2026-07-31T16:32:31.990025Z",
+    "updated_at": "2026-07-31T17:14:14.377129Z",
+    "is_anonymous": false
+  },
+  {
+    "id": "76b9ed46-8bfb-447b-b60a-8132abe95df1",
+    "aud": "authenticated",
+    "role": "authenticated",
+    "email": "leec16700@gmail.com",
+    "email_confirmed_at": "2026-07-31T16:18:40.420305Z",
+    "phone": "",
+    "confirmed_at": "2026-07-31T16:18:40.420305Z",
+    "last_sign_in_at": "2026-07-31T16:18:41.117951Z",
+    "app_metadata": {
+      "provider": "google",
+      "providers": [
+        "google"
+      ]
+    },
+    "user_metadata": {
+      "avatar_url": "https://lh3.googleusercontent.com/a/ACg8ocJYGMZUHkn6bz_Es5txk1HosXKO98RLGdu_5J56o7O2n5yWOg=s96-c",
+      "email": "leec16700@gmail.com",
+      "email_verified": true,
+      "full_name": "cheng Lee",
+      "iss": "https://accounts.google.com",
+      "name": "cheng Lee",
+      "phone_verified": false,
+      "picture": "https://lh3.googleusercontent.com/a/ACg8ocJYGMZUHkn6bz_Es5txk1HosXKO98RLGdu_5J56o7O2n5yWOg=s96-c",
+      "provider_id": "115052600531452008201",
+      "sub": "115052600531452008201"
+    },
+    "identities": null,
+    "created_at": "2026-07-31T16:18:40.406502Z",
+    "updated_at": "2026-07-31T16:18:41.119989Z",
+    "is_anonymous": false
+  },
+  {
+    "id": "55dae356-6070-4736-bfd0-46f9288fbb79",
+    "aud": "authenticated",
+    "role": "authenticated",
+    "email": "viajenex@gmail.com",
+    "email_confirmed_at": "2026-07-31T16:13:18.361631Z",
+    "phone": "",
+    "confirmed_at": "2026-07-31T16:13:18.361631Z",
+    "last_sign_in_at": "2026-07-31T16:17:59.657937Z",
+    "app_metadata": {
+      "provider": "google",
+      "providers": [
+        "google"
+      ]
+    },
+    "user_metadata": {
+      "avatar_url": "https://lh3.googleusercontent.com/a/ACg8ocLFObVXvQmC0PLN0jYLTie0r8uwBFNRQ0xn7y4atQwUD8ZStA=s96-c",
+      "email": "viajenex@gmail.com",
+      "email_verified": true,
+      "full_name": "kanui Miqueias",
+      "iss": "https://accounts.google.com",
+      "name": "kanui Miqueias",
+      "phone_verified": false,
+      "picture": "https://lh3.googleusercontent.com/a/ACg8ocLFObVXvQmC0PLN0jYLTie0r8uwBFNRQ0xn7y4atQwUD8ZStA=s96-c",
+      "provider_id": "106560955200164975717",
+      "sub": "106560955200164975717"
+    },
+    "identities": null,
+    "created_at": "2026-07-31T16:13:18.347696Z",
+    "updated_at": "2026-07-31T16:17:59.663993Z",
+    "is_anonymous": false
+  },
+  {
+    "id": "e5afde60-77a8-4930-af02-278f142d1242",
+    "aud": "authenticated",
+    "role": "authenticated",
+    "email": "barbeiroteste@gmail.com",
+    "email_confirmed_at": "2026-07-31T16:00:32.37508Z",
+    "phone": "",
+    "confirmed_at": "2026-07-31T16:00:32.37508Z",
+    "last_sign_in_at": "2026-07-31T16:05:37.052088Z",
+    "app_metadata": {
+      "provider": "email",
+      "providers": [
+        "email"
+      ]
+    },
+    "user_metadata": {
+      "email_verified": true,
+      "name": "Barbeiro Teste"
+    },
+    "identities": null,
+    "created_at": "2026-07-31T16:00:32.357301Z",
+    "updated_at": "2026-07-31T16:05:37.054301Z",
+    "is_anonymous": false
+  },
+  {
+    "id": "7615272e-fe8a-478d-bb8c-06a8d65bec89",
+    "aud": "authenticated",
+    "role": "authenticated",
+    "email": "srmiqueiaslopes@gmail.com",
+    "email_confirmed_at": "2026-07-30T05:12:01.966498Z",
+    "phone": "",
+    "confirmed_at": "2026-07-30T05:12:01.966498Z",
+    "last_sign_in_at": "2026-07-31T17:04:20.198582Z",
+    "app_metadata": {
+      "provider": "email",
+      "providers": [
+        "email",
+        "google"
+      ]
+    },
+    "user_metadata": {
+      "avatar_url": "https://lh3.googleusercontent.com/a/ACg8ocJ9rD11n0k70luP2laJuKdPAFHKSXyfqPeKXCgI0bkAmp30=s96-c",
+      "email": "srmiqueiaslopes@gmail.com",
+      "email_verified": true,
+      "full_name": "Miqueias Lopes",
+      "iss": "https://accounts.google.com",
+      "name": "Miqueias Lopes",
+      "phone": "(81) 98829-2421",
+      "phone_verified": false,
+      "picture": "https://lh3.googleusercontent.com/a/ACg8ocJ9rD11n0k70luP2laJuKdPAFHKSXyfqPeKXCgI0bkAmp30=s96-c",
+      "provider_id": "102570676653476126518",
+      "sub": "102570676653476126518"
+    },
+    "identities": null,
+    "created_at": "2026-07-30T05:12:01.89885Z",
+    "updated_at": "2026-07-31T17:04:20.243259Z",
+    "is_anonymous": false
+  }
+]
