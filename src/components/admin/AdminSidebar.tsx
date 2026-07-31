@@ -10,10 +10,12 @@ import {
   Calendar,
   Users,
   DollarSign,
+  Settings,
   X,
   Menu,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { SiteLogo } from '@/components/layout/SiteLogo';
 
 interface NavItem {
   label: string;
@@ -28,6 +30,7 @@ const navItems: NavItem[] = [
   { label: 'Agendamentos', href: '/admin/agendamentos', icon: <Calendar size={20} /> },
   { label: 'Clientes', href: '/admin/clientes', icon: <Users size={20} /> },
   { label: 'Financeiro', href: '/admin/financeiro', icon: <DollarSign size={20} /> },
+  { label: 'Configurações', href: '/admin/configuracoes', icon: <Settings size={20} /> },
 ];
 
 export function AdminSidebar() {
@@ -39,9 +42,7 @@ export function AdminSidebar() {
     <div className="flex flex-col h-full">
       <div className="p-6 border-b border-white/10">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gold flex items-center justify-center">
-            <span className="text-primary font-bold text-lg">BE</span>
-          </div>
+          <SiteLogo showText={false} iconClassName="w-8 h-8" />
           <div>
             <h1 className="text-white font-semibold text-lg leading-tight">Barber Elite</h1>
             <p className="text-gold text-xs font-medium">Admin Panel</p>

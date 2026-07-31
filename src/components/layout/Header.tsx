@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Scissors, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
+import { SiteLogo } from '@/components/layout/SiteLogo'
 
 const navLinks = [
   { href: '#inicio', label: 'Início' },
@@ -40,10 +41,7 @@ export default function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <Scissors className="w-6 h-6 text-gold group-hover:rotate-45 transition-transform duration-300" />
-          <span className="text-xl font-bold tracking-wider text-gradient">
-            Barber Elite
-          </span>
+          <SiteLogo />
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
