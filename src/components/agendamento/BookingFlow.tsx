@@ -120,7 +120,21 @@ export default function BookingFlow({ onComplete }: BookingFlowProps) {
         bookedTimes
       );
 
-      setTimeSlots(slots);
+      const isToday =
+        selectedDate === new Date().toISOString().split('T')[0];
+
+      const filteredSlots = isToday
+        ? slots.map((slot) => {
+            const now = new Date();
+            const slotDate = new Date(`${selectedDate}T${slot.time}:00`);
+            return {
+              ...slot,
+              available: slot.available && slotDate.getTime() > now.getTime() + 30 * 60000,
+            };
+          })
+        : slots;
+
+      setTimeSlots(filteredSlots);
       setSlotsLoading(false);
     };
 
