@@ -36,9 +36,10 @@ export default function ClienteLayout({ children }: { children: React.ReactNode 
 
   useEffect(() => {
     if (!loading && !user) {
-      router.replace('/login');
+      const next = encodeURIComponent(pathname);
+      router.replace(`/login?next=${next}`);
     }
-  }, [user, loading, router]);
+  }, [user, loading, router, pathname]);
 
   if (loading || !user) {
     return (

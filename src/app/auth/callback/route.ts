@@ -27,5 +27,10 @@ export async function GET(request: NextRequest) {
     await supabase.auth.exchangeCodeForSession(code)
   }
 
-  return NextResponse.redirect(`${origin}/cliente`)
+  const next = searchParams.get('next')
+  const target = next && next.startsWith('/') && !next.startsWith('//')
+    ? next
+    : '/cliente'
+
+  return NextResponse.redirect(`${origin}${target}`)
 }

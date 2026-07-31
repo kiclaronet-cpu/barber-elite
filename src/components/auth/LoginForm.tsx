@@ -33,9 +33,14 @@ export default function LoginForm() {
     setError('')
     setGoogleLoading(true)
     const supabase = createClient()
+    const params = new URLSearchParams(window.location.search)
+    const next = params.get('next')
+    const redirectTo = next
+      ? `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`
+      : `${window.location.origin}/auth/callback`
     const { error: authError } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: `${window.location.origin}/auth/callback` },
+      options: { redirectTo },
     })
     if (authError) {
       setError(authError.message)
@@ -101,7 +106,9 @@ export default function LoginForm() {
     if (profile?.role === 'admin') {
       router.push('/admin')
     } else {
-      router.push('/cliente')
+      const params = new URLSearchParams(window.location.search)
+      const next = params.get('next')
+      router.push(next && next.startsWith('/') ? next : '/cliente')
     }
   }
 
