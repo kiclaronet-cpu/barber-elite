@@ -4,16 +4,16 @@ import { emailLayout, EMAIL_FROM, SITE_URL } from '@/lib/email/layout'
 
 const webpush = require('web-push')
 
-webpush.setVapidDetails(
-  process.env.VAPID_SUBJECT || 'mailto:contato@barberelite.com',
-  process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
-  process.env.VAPID_PRIVATE_KEY
-)
-
 export async function GET(request: Request) {
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.SUPABASE_SERVICE_ROLE_KEY!
+  )
+
+  webpush.setVapidDetails(
+    process.env.VAPID_SUBJECT || 'mailto:contato@barberelite.com',
+    process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
+    process.env.VAPID_PRIVATE_KEY
   )
 
   const secret = new URL(request.url).searchParams.get('secret')
