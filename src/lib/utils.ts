@@ -32,7 +32,7 @@ export function generateTimeSlots(
   start: string,
   end: string,
   duration: number,
-  bookedSlots: string[] = []
+  bookedIntervals: { start: string; end: string }[] = []
 ): { time: string; available: boolean }[] {
   const slots: { time: string; available: boolean }[] = [];
   const [startH, startM] = start.split(':').map(Number);
@@ -40,14 +40,25 @@ export function generateTimeSlots(
   let current = startH * 60 + startM;
   const endMinutes = endH * 60 + endM;
 
+  const toMin = (t: string) => {
+    const [h, m] = t.split(':').map(Number);
+    return h * 60 + m;
+  };
+
+  const intervals = bookedIntervals.map((b) => ({
+    start: toMin(b.start),
+    end: Math.max(toMin(b.end), toMin(b.start) + 1),
+  }));
+
   while (current + duration <= endMinutes) {
     const h = Math.floor(current / 60);
     const m = current % 60;
     const time = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
-    const isBooked = bookedSlots.some(
-      (booked) => booked.slice(0, 5) === time
+    const slotEnd = current + duration;
+    const overlaps = intervals.some(
+      (b) => current < b.end && slotEnd > b.start
     );
-    slots.push({ time, available: !isBooked });
+    slots.push({ time, available: !overlaps });
     current += duration;
   }
 

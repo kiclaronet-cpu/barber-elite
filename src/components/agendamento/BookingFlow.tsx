@@ -64,6 +64,7 @@ export default function BookingFlow({ onComplete }: BookingFlowProps) {
 
   const [submitting, setSubmitting] = useState(false);
   const [successModal, setSuccessModal] = useState(false);
+  const [bookError, setBookError] = useState('');
 
   const [businessHours, setBusinessHours] = useState<Record<number, { open_time: string | null; close_time: string | null; closed: boolean }>>({});
 
@@ -139,7 +140,10 @@ export default function BookingFlow({ onComplete }: BookingFlowProps) {
         .eq('date', selectedDate)
         .neq('status', 'cancelled');
 
-      const bookedTimes = (existing || []).map((a) => a.time);
+      const bookedIntervals = (existing || []).map((a) => ({
+        start: a.time,
+        end: a.end_time || a.time,
+      }));
 
       const duration = selectedService?.duration || 60;
 
@@ -152,7 +156,7 @@ export default function BookingFlow({ onComplete }: BookingFlowProps) {
         barberStart > bizStart ? barberStart : bizStart,
         barberEnd < bizEnd ? barberEnd : bizEnd,
         duration,
-        bookedTimes
+        bookedIntervals
       );
 
       const isToday =
@@ -263,6 +267,30 @@ export default function BookingFlow({ onComplete }: BookingFlowProps) {
     const endMin = endMinutes % 60;
     const endTime = `${endHour.toString().padStart(2, '0')}:${endMin.toString().padStart(2, '0')}`;
 
+    const { data: existing, error: existingError } = await supabase
+      .from('appointments')
+      .select('time, end_time')
+      .eq('barber_id', selectedBarber.id)
+      .eq('date', selectedDate)
+      .neq('status', 'cancelled');
+
+    const toMin = (t: string) => {
+      const [h, m] = t.split(':').map(Number);
+      return h * 60 + m;
+    };
+
+    const conflicts = (existing || []).some((a) => {
+      const aStart = toMin(a.time);
+      const aEnd = Math.max(toMin(a.end_time || a.time), aStart + 1);
+      return startMinutes < aEnd && endMinutes > aStart;
+    });
+
+    if (existingError || conflicts) {
+      setBookError('Esse horário acabou de ser reservado por outro cliente. Escolha outro horário.')
+      setSubmitting(false)
+      return
+    }
+
     const { error } = await supabase.from('appointments').insert({
       user_id: userData.user.id,
       barber_id: selectedBarber.id,
@@ -273,6 +301,12 @@ export default function BookingFlow({ onComplete }: BookingFlowProps) {
       status: 'pending',
       notes: notes || null,
     });
+
+    if (error) {
+      setBookError('Não foi possível reservar esse horário. Tente outro.')
+      setSubmitting(false)
+      return
+    }
 
     setSubmitting(false);
 
@@ -724,7 +758,10 @@ export default function BookingFlow({ onComplete }: BookingFlowProps) {
             </Button>
           )}
         </div>
-        <div>
+        <div className="text-right">
+          {bookError && (
+            <p className="mb-3 text-sm text-red-400">{bookError}</p>
+          )}
           {currentStep < 4 ? (
             <Button
               variant="gold"
