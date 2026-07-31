@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Plus, Pencil, Star, StarHalf, X, Clock } from 'lucide-react';
+import { Plus, Pencil, Star, StarHalf, X, Clock, Camera, Upload, Trash2 } from 'lucide-react';
 import { useAuth } from '@/providers/auth-provider';
 import { createClient } from '@/lib/supabase/client';
 import { AdminSidebar } from '@/components/admin/AdminSidebar';
@@ -28,8 +28,11 @@ export default function AdminBarbeiros() {
   const [editing, setEditing] = useState<Barber | null>(null);
   const [selectedBarber, setSelectedBarber] = useState<Barber | null>(null);
   const [saving, setSaving] = useState(false);
-  const [form, setForm] = useState({ name: '', description: '', specialties: '' });
+  const [form, setForm] = useState({ name: '', description: '', specialties: '', photo: '' });
   const [availabilities, setAvailabilities] = useState<BarberAvailability[]>([]);
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState('');
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (authLoading) return;
@@ -46,9 +49,38 @@ export default function AdminBarbeiros() {
     setLoading(false);
   }
 
+  async function handlePhotoUpload(file: File) {
+    if (!file) return;
+    setUploading(true);
+    setUploadError('');
+
+    const ext = file.name.split('.').pop() || 'jpg';
+    const path = `${editing?.id || `novo-${Date.now()}`}.${ext}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from('barber-photos')
+      .upload(path, file, { upsert: true, cacheControl: '3600' });
+
+    if (uploadError) {
+      setUploadError('Erro ao enviar foto: ' + uploadError.message);
+      setUploading(false);
+      return;
+    }
+
+    const { data: urlData } = supabase.storage.from('barber-photos').getPublicUrl(path);
+    setForm((f) => ({ ...f, photo: urlData.publicUrl }));
+    setUploading(false);
+  }
+
+  function handlePhotoRemove() {
+    setForm((f) => ({ ...f, photo: '' }));
+    setUploadError('');
+  }
+
   function openNew() {
     setEditing(null);
-    setForm({ name: '', description: '', specialties: '' });
+    setForm({ name: '', description: '', specialties: '', photo: '' });
+    setUploadError('');
     setModalOpen(true);
   }
 
@@ -58,7 +90,9 @@ export default function AdminBarbeiros() {
       name: barber.name,
       description: barber.description || '',
       specialties: barber.specialties.join(', '),
+      photo: barber.photo || '',
     });
+    setUploadError('');
     setModalOpen(true);
   }
 
@@ -69,6 +103,7 @@ export default function AdminBarbeiros() {
       name: form.name,
       description: form.description || null,
       specialties: form.specialties.split(',').map((s) => s.trim()).filter(Boolean),
+      photo: form.photo || null,
     };
 
     if (editing) {
@@ -148,8 +183,13 @@ export default function AdminBarbeiros() {
                 <Card padding="lg" className="h-full flex flex-col">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-14 h-14 rounded-full bg-gold/10 flex items-center justify-center text-gold font-bold text-xl">
-                        {barber.name.charAt(0)}
+                      <div className="w-14 h-14 rounded-full bg-gold/10 flex items-center justify-center text-gold font-bold text-xl overflow-hidden shrink-0">
+                        {barber.photo ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={barber.photo} alt={barber.name} className="w-full h-full object-cover" />
+                        ) : (
+                          barber.name.charAt(0)
+                        )}
                       </div>
                       <div>
                         <h4 className="text-white font-semibold">{barber.name}</h4>
@@ -210,6 +250,43 @@ export default function AdminBarbeiros() {
 
         <Modal open={modalOpen} onClose={() => setModalOpen(false)} title={editing ? 'Editar Barbeiro' : 'Novo Barbeiro'}>
           <div className="space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+              <div className="w-20 h-20 rounded-full bg-white/5 border border-dashed border-white/20 flex items-center justify-center overflow-hidden shrink-0">
+                {form.photo ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={form.photo} alt="Foto do barbeiro" className="w-full h-full object-cover" />
+                ) : (
+                  <Camera size={24} className="text-white/30" />
+                )}
+              </div>
+              <div className="flex flex-col gap-2">
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/png,image/jpeg,image/webp"
+                  className="hidden"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) handlePhotoUpload(file);
+                    e.target.value = '';
+                  }}
+                />
+                <Button
+                  variant="gold"
+                  onClick={() => fileInputRef.current?.click()}
+                  loading={uploading}
+                  icon={<Upload size={16} />}
+                >
+                  {uploading ? 'Enviando...' : form.photo ? 'Trocar Foto' : 'Enviar Foto'}
+                </Button>
+                {form.photo && (
+                  <Button variant="ghost" onClick={handlePhotoRemove} icon={<Trash2 size={16} />}>
+                    Remover Foto
+                  </Button>
+                )}
+              </div>
+            </div>
+            {uploadError && <p className="text-xs text-red-400">{uploadError}</p>}
             <Input label="Nome" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Nome do barbeiro" />
             <Input label="Descrição" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} placeholder="Descrição opcional" />
             <Input label="Especialidades" value={form.specialties} onChange={(e) => setForm({ ...form, specialties: e.target.value })} placeholder="Corte, Barba, Hidratação" />
