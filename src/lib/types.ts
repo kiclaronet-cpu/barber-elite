@@ -1,4 +1,4 @@
-export type Role = 'admin' | 'cliente';
+export type Role = 'admin' | 'barbeiro' | 'cliente';
 export type AppointmentStatus = 'pending' | 'confirmed' | 'completed' | 'cancelled';
 
 export interface Profile {
@@ -20,6 +20,7 @@ export interface Barber {
   specialties: string[];
   rating: number;
   active: boolean;
+  user_id: string | null;
   created_at: string;
   updated_at: string;
 }

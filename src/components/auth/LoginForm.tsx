@@ -105,6 +105,8 @@ export default function LoginForm() {
 
     if (profile?.role === 'admin') {
       router.push('/admin')
+    } else if (profile?.role === 'barbeiro') {
+      router.push('/barbeiro')
     } else {
       const params = new URLSearchParams(window.location.search)
       const next = params.get('next')

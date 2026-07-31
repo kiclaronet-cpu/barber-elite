@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Plus, Pencil, Star, StarHalf, X, Clock, Camera, Upload, Trash2 } from 'lucide-react';
+import { Plus, Pencil, Star, StarHalf, X, Clock, Camera, Upload, Trash2, Mail, CheckCircle } from 'lucide-react';
 import { useAuth } from '@/providers/auth-provider';
 import { createClient } from '@/lib/supabase/client';
 import { AdminSidebar } from '@/components/admin/AdminSidebar';
@@ -33,6 +33,10 @@ export default function AdminBarbeiros() {
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [invites, setInvites] = useState<{ id: string; email: string }[]>([]);
+  const [inviteEmail, setInviteEmail] = useState('');
+  const [inviteMessage, setInviteMessage] = useState('');
+  const [inviteLoading, setInviteLoading] = useState(false);
 
   useEffect(() => {
     if (authLoading) return;
@@ -46,7 +50,34 @@ export default function AdminBarbeiros() {
   async function fetchBarbers() {
     const { data } = await supabase.from('barbers').select('*').order('name');
     if (data) setBarbers(data as Barber[]);
+    const { data: inviteData } = await supabase.from('barber_invites').select('id, email').eq('active', true).order('email');
+    if (inviteData) setInvites(inviteData as { id: string; email: string }[]);
     setLoading(false);
+  }
+
+  async function handleAddInvite() {
+    const email = inviteEmail.trim().toLowerCase();
+    if (!email || !email.includes('@')) {
+      setInviteMessage('Digite um email válido.');
+      return;
+    }
+    setInviteLoading(true);
+    setInviteMessage('');
+    const { error } = await supabase.from('barber_invites').insert({ email, active: true });
+    setInviteLoading(false);
+    if (error) {
+      setInviteMessage(error.code === '23505' ? 'Este email já está na lista.' : 'Erro ao adicionar: ' + error.message);
+      return;
+    }
+    setInviteEmail('');
+    setInviteMessage('Email autorizado! Quando essa pessoa se cadastrar, ela terá acesso à área do barbeiro.');
+    fetchBarbers();
+  }
+
+  async function handleRemoveInvite(id: string) {
+    await supabase.from('barber_invites').delete().eq('id', id);
+    setInviteMessage('Email removido da lista.');
+    fetchBarbers();
   }
 
   async function handlePhotoUpload(file: File) {
@@ -155,8 +186,61 @@ export default function AdminBarbeiros() {
               ))}
             </div>
           </div>
+          </div>
+
+          <Card padding="lg" className="max-w-xl">
+            <h3 className="text-white font-semibold flex items-center gap-2">
+              <Mail size={18} className="text-gold" />
+              Promover Emails de Barbeiros
+            </h3>
+            <p className="text-sm text-white/40 mb-4">
+              Adicione aqui o email de quem será barbeiro. Quando essa pessoa criar uma conta, ela ganha automaticamente a área do barbeiro com seus próprios horários.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-3 mb-4">
+              <input
+                type="email"
+                value={inviteEmail}
+                onChange={(e) => setInviteEmail(e.target.value)}
+                placeholder="email do barbeiro..."
+                className="flex-1 rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/30 transition-all"
+              />
+              <Button variant="gold" onClick={handleAddInvite} loading={inviteLoading} icon={<Plus size={16} />}>
+                Autorizar
+              </Button>
+            </div>
+
+            {inviteMessage && (
+              <div className={`flex items-center gap-2 text-sm mb-4 rounded-lg px-4 py-3 ${
+                inviteMessage.startsWith('Erro')
+                  ? 'text-red-400 bg-red-500/10 border border-red-500/20'
+                  : 'text-emerald-400 bg-emerald-500/10 border border-emerald-500/20'
+              }`}>
+                <CheckCircle size={16} />
+                {inviteMessage}
+              </div>
+            )}
+
+            {invites.length > 0 ? (
+              <div className="space-y-2">
+                {invites.map((inv) => (
+                  <div key={inv.id} className="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5">
+                    <span className="text-sm text-white truncate">{inv.email}</span>
+                    <button
+                      onClick={() => handleRemoveInvite(inv.id)}
+                      className="p-2 rounded-lg border border-red-500/20 text-red-400 hover:bg-red-500/10 transition-colors shrink-0 ml-3"
+                      title="Remover email"
+                    >
+                      <Trash2 size={14} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-sm text-white/30">Nenhum email autorizado ainda.</p>
+            )}
+          </Card>
         </div>
-      </div>
     );
   }
 

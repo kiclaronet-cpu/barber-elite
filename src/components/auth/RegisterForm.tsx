@@ -123,7 +123,12 @@ export default function RegisterForm() {
     } catch {}
 
     if (data.session) {
-      router.push('/cliente')
+      const { data: prof } = await supabase
+        .from('profiles')
+        .select('role')
+        .eq('id', data.user.id)
+        .single()
+      router.push(prof?.role === 'barbeiro' ? '/barbeiro' : '/cliente')
     } else {
       setError('Conta criada! Verifique seu email para confirmar o cadastro.')
       setLoading(false)
