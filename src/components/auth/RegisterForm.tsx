@@ -90,6 +90,14 @@ export default function RegisterForm() {
       return
     }
 
+    try {
+      fetch('/api/email/welcome', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: form.email, name: form.name }),
+      })
+    } catch {}
+
     if (data.session) {
       router.push('/cliente')
     } else {

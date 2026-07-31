@@ -228,6 +228,33 @@ export default function BookingFlow({ onComplete }: BookingFlowProps) {
     setSubmitting(false);
 
     if (!error) {
+      try {
+        const { data: profileData } = await supabase
+          .from('profiles')
+          .select('name, email')
+          .eq('id', userData.user.id)
+          .single();
+
+        if (profileData) {
+          const dateParts = selectedDate.split('-');
+          const displayDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
+          fetch('/api/email/confirmation', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: profileData.email,
+              name: profileData.name || 'Cliente',
+              service: selectedService.name,
+              barber: selectedBarber.name,
+              date: displayDate,
+              time: selectedTime,
+              price: `R$ ${selectedService.price.toFixed(2).replace('.', ',')}`,
+              duration: selectedService.duration,
+              status: 'pending',
+            }),
+          }).catch(() => {});
+        }
+      } catch {}
       setSuccessModal(true);
     }
   };
