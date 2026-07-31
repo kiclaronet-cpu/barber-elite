@@ -103,7 +103,11 @@ export default function RegisterForm() {
     })
 
     if (signUpError) {
-      setError(signUpError.message)
+      setError(
+        signUpError.message.toLowerCase().includes('already registered')
+          ? 'Este email já possui uma conta. Tente fazer login ou recuperar a senha.'
+          : signUpError.message
+      )
       setLoading(false)
       return
     }
@@ -122,7 +126,21 @@ export default function RegisterForm() {
       })
     } catch {}
 
-    if (data.session) {
+    let session = data.session
+    if (!session) {
+      const { data: loginData, error: loginError } = await supabase.auth.signInWithPassword({
+        email: form.email,
+        password: form.password,
+      })
+      if (loginError) {
+        setError('Conta criada! Entre com seu email e senha para continuar.')
+        setLoading(false)
+        return
+      }
+      session = loginData.session
+    }
+
+    if (session) {
       const { data: prof } = await supabase
         .from('profiles')
         .select('role')
