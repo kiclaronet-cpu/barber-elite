@@ -2,11 +2,6 @@ import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { emailLayout, EMAIL_FROM, SITE_URL } from '@/lib/email/layout'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
-
 const webpush = require('web-push')
 
 webpush.setVapidDetails(
@@ -16,6 +11,11 @@ webpush.setVapidDetails(
 )
 
 export async function GET(request: Request) {
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  )
+
   const secret = new URL(request.url).searchParams.get('secret')
   if (secret !== process.env.CRON_SECRET) {
     return NextResponse.json({ error: 'Não autorizado' }, { status: 401 })
