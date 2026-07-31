@@ -148,10 +148,10 @@ export default function AdminConfiguracoes() {
               </p>
 
               <div className="flex flex-col sm:flex-row sm:items-center gap-6 mb-6">
-                <div className="w-40 h-24 rounded-xl bg-white/5 border border-dashed border-white/20 flex items-center justify-center overflow-hidden">
+                <div className="w-40 h-40 rounded-full bg-white/5 border border-dashed border-white/20 flex items-center justify-center overflow-hidden">
                   {logoUrl ? (
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={logoUrl} alt="Logo" className="max-h-full max-w-full object-contain" />
+                    <img src={logoUrl} alt="Logo" className="w-full h-full object-cover" />
                   ) : (
                     <div className="text-center text-white/30">
                       <ImageIcon size={32} className="mx-auto mb-2" />

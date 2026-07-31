@@ -41,7 +41,7 @@ export function SiteLogo({ className, textClassName, iconClassName, showText = t
         <img
           src={logoUrl}
           alt="Barber Elite"
-          className={cn('h-9 w-auto object-contain', iconClassName)}
+          className={cn('h-9 w-9 rounded-full object-cover border border-white/10 bg-white/5 shrink-0', iconClassName)}
         />
       ) : (
         <Scissors className={cn('w-6 h-6 text-gold', iconClassName)} />
