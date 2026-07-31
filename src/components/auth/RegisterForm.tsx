@@ -122,23 +122,6 @@ export default function RegisterForm() {
       })
     } catch {}
 
-    try {
-      fetch('/api/telegram/notify', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: form.name,
-          phone: form.phone,
-          service: '—',
-          barber: '—',
-          date: '—',
-          time: '—',
-          price: '—',
-          status: 'signup',
-        }),
-      })
-    } catch {}
-
     if (data.session) {
       router.push('/cliente')
     } else {

@@ -65,15 +65,25 @@ export default function BookingFlow({ onComplete }: BookingFlowProps) {
   const [submitting, setSubmitting] = useState(false);
   const [successModal, setSuccessModal] = useState(false);
 
+  const [businessHours, setBusinessHours] = useState<Record<number, { open_time: string | null; close_time: string | null; closed: boolean }>>({});
+
   useEffect(() => {
     const fetchData = async () => {
-      const [servicesRes, barbersRes] = await Promise.all([
+      const [servicesRes, barbersRes, hoursRes] = await Promise.all([
         supabase.from('services').select('*').eq('active', true),
         supabase.from('barbers').select('*').eq('active', true),
+        supabase.from('business_hours').select('*'),
       ]);
 
       if (servicesRes.data) setServices(servicesRes.data as Service[]);
       if (barbersRes.data) setBarbers(barbersRes.data as Barber[]);
+      if (hoursRes.data) {
+        const map: Record<number, { open_time: string | null; close_time: string | null; closed: boolean }> = {};
+        hoursRes.data.forEach((h: any) => {
+          map[h.day_of_week] = { open_time: h.open_time, close_time: h.close_time, closed: h.closed };
+        });
+        setBusinessHours(map);
+      }
       setLoading(false);
     };
 
@@ -102,6 +112,14 @@ export default function BookingFlow({ onComplete }: BookingFlowProps) {
         return;
       }
 
+      const businessDay = businessHours[dayOfWeek];
+
+      if (businessDay?.closed || !businessDay?.open_time || !businessDay?.close_time) {
+        setTimeSlots([]);
+        setSlotsLoading(false);
+        return;
+      }
+
       const { data: existing } = await supabase
         .from('appointments')
         .select('time, end_time')
@@ -113,9 +131,14 @@ export default function BookingFlow({ onComplete }: BookingFlowProps) {
 
       const duration = selectedService?.duration || 60;
 
+      const barberStart = availability.start_time;
+      const barberEnd = availability.end_time;
+      const bizStart = businessDay.open_time;
+      const bizEnd = businessDay.close_time;
+
       const slots = generateTimeSlots(
-        availability.start_time,
-        availability.end_time,
+        barberStart > bizStart ? barberStart : bizStart,
+        barberEnd < bizEnd ? barberEnd : bizEnd,
         duration,
         bookedTimes
       );
@@ -495,7 +518,10 @@ export default function BookingFlow({ onComplete }: BookingFlowProps) {
               day !== null &&
               selectedDate ===
                 `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-            const isDisabled = day === null || isPast;
+            const dayOfWeek = day !== null ? new Date(currentYear, currentMonth, day).getDay() : -1;
+            const bizDay = businessHours[dayOfWeek];
+            const isClosed = day !== null && (bizDay?.closed || !bizDay?.open_time || !bizDay?.close_time);
+            const isDisabled = day === null || isPast || isClosed;
 
             return (
               <button
@@ -518,8 +544,7 @@ export default function BookingFlow({ onComplete }: BookingFlowProps) {
                 }`}
               >
                 {day || ''}
-              </button>
-            );
+              </button>            );
           })}
         </div>
 
@@ -534,9 +559,18 @@ export default function BookingFlow({ onComplete }: BookingFlowProps) {
                 <div className="w-6 h-6 border-2 border-gold border-t-transparent rounded-full animate-spin" />
               </div>
             ) : timeSlots.length === 0 ? (
-              <p className="text-center text-white/30 text-sm py-4">
-                Nenhum horário disponível nesta data
-              </p>
+              selectedDate && (() => {
+                const dw = new Date(selectedDate).getDay();
+                const bizDay = businessHours[dw];
+                const closed = bizDay?.closed || !bizDay?.open_time || !bizDay?.close_time;
+                return (
+                  <p className="text-center text-white/30 text-sm py-4">
+                    {closed
+                      ? 'Barbearia fechada nesta data'
+                      : 'Nenhum horário disponível nesta data'}
+                  </p>
+                );
+              })()
             ) : (
               <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
                 {timeSlots.map((slot) => (

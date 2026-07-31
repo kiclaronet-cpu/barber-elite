@@ -12,11 +12,14 @@ import {
   Heart,
   ArrowRight,
   Sparkles,
+  Bell,
+  BellRing,
 } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
+import { usePushNotifications } from '@/hooks/use-push-notifications';
 import { formatDate, formatTime, formatPrice } from '@/lib/utils';
 import type { Appointment } from '@/lib/types';
 
@@ -36,6 +39,7 @@ export default function ClienteDashboard() {
   });
   const [dataLoading, setDataLoading] = useState(true);
   const supabase = createClient();
+  const { supported, permission, subscribed, loading: pushLoading, subscribe, unsubscribe } = usePushNotifications();
 
   useEffect(() => {
     if (!user) return;
@@ -185,6 +189,44 @@ export default function ClienteDashboard() {
           </Card>
         </motion.div>
       </div>
+
+      <motion.div variants={itemVariants}>
+        {supported && (
+          <Card padding="lg" className="relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full -translate-y-1/2 translate-x-1/2" />
+            <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-gold/15 flex items-center justify-center shrink-0">
+                  {subscribed || permission === 'granted' ? (
+                    <BellRing className="w-6 h-6 text-gold" />
+                  ) : (
+                    <Bell className="w-6 h-6 text-gold" />
+                  )}
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-1">
+                    {subscribed ? 'Notificações ativadas' : 'Receba lembretes do seu corte'}
+                  </h3>
+                  <p className="text-white/50 text-sm">
+                    {subscribed
+                      ? 'Você receberá um aviso 1 hora antes do seu horário agendado.'
+                      : 'Ative para receber um aviso 1 hora antes do seu agendamento.'}
+                  </p>
+                </div>
+              </div>
+              {subscribed ? (
+                <Button variant="outline" onClick={unsubscribe} loading={pushLoading}>
+                  Desativar
+                </Button>
+              ) : (
+                <Button variant="gold" onClick={subscribe} loading={pushLoading} icon={<Bell size={16} />}>
+                  {permission === 'denied' ? 'Permissão bloqueada no navegador' : 'Ativar notificações'}
+                </Button>
+              )}
+            </div>
+          </Card>
+        )}
+      </motion.div>
 
       <motion.div variants={itemVariants}>
         <Card padding="lg" gold className="relative overflow-hidden">

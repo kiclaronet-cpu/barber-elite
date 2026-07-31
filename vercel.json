@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/reminders?secret=barber-elite-cron-secret-2026",
+      "schedule": "*/15 * * * *"
+    }
+  ]
+}
