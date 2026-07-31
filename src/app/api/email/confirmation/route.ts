@@ -16,12 +16,16 @@ export async function POST(request: Request) {
 
     const statusColor = status === 'cancelled' ? '#ef4444' : status === 'confirmed' ? '#22c55e' : '#c9a84c'
 
-    const formattedDate = new Date(`${date}T12:00:00`).toLocaleDateString('pt-BR', {
-      weekday: 'long',
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    })
+    const dateMatch = date.trim().match(/^(\d{2})\/(\d{2})\/(\d{4})$/)
+      || date.trim().match(/^(\d{4})-(\d{2})-(\d{2})$/)
+    const formattedDate = dateMatch
+      ? new Date(+dateMatch[3], +dateMatch[2] - 1, +dateMatch[1], 12, 0, 0).toLocaleDateString('pt-BR', {
+          weekday: 'long',
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric',
+        })
+      : date
 
     const html = emailLayout(
       'Agendamento recebido!',
