@@ -147,7 +147,7 @@ export default function AdminConfiguracoes() {
                 Envie o logo que aparecerá no topo do site e no painel admin.
               </p>
 
-              <div className="flex items-center gap-6 mb-6">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-6 mb-6">
                 <div className="w-40 h-24 rounded-xl bg-white/5 border border-dashed border-white/20 flex items-center justify-center overflow-hidden">
                   {logoUrl ? (
                     // eslint-disable-next-line @next/next/no-img-element
@@ -189,7 +189,11 @@ export default function AdminConfiguracoes() {
               </div>
 
               {message && (
-                <div className="flex items-center gap-2 text-sm text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-lg px-4 py-3">
+                <div className={`flex items-center gap-2 text-sm rounded-lg px-4 py-3 ${
+                  message.startsWith('Erro')
+                    ? 'text-red-400 bg-red-500/10 border border-red-500/20'
+                    : 'text-emerald-400 bg-emerald-500/10 border border-emerald-500/20'
+                }`}>
                   <CheckCircle size={16} />
                   {message}
                 </div>
@@ -216,9 +220,9 @@ export default function AdminConfiguracoes() {
                   const h = hours.find(x => x.day_of_week === day);
                   if (!h) return null;
                   return (
-                    <div key={day} className="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
-                      <span className="text-sm text-white font-medium w-24">{getDayName(day)}</span>
-                      <label className="flex items-center gap-2 text-xs text-white/40 cursor-pointer">
+                    <div key={day} className="flex flex-wrap items-center gap-x-3 gap-y-2 p-3 rounded-xl bg-white/5 border border-white/5">
+                      <span className="text-sm text-white font-medium w-24 shrink-0">{getDayName(day)}</span>
+                      <label className="flex items-center gap-2 text-xs text-white/40 cursor-pointer shrink-0">
                         <input
                           type="checkbox"
                           checked={h.closed}
@@ -227,7 +231,7 @@ export default function AdminConfiguracoes() {
                         />
                         Fechado
                       </label>
-                      <div className="flex items-center gap-2 ml-auto">
+                      <div className="flex items-center gap-2 sm:ml-auto">
                         <input
                           type="time"
                           value={h.open_time?.slice(0, 5) || '09:00'}
