@@ -11,13 +11,26 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Chat ID não configurado' }, { status: 500 })
     }
 
-    const statusEmoji =
-      status === 'confirmed' ? '✅' : status === 'cancelled' ? '❌' : '🕐'
+    let message = ''
 
-    const statusLabel =
-      status === 'confirmed' ? 'CONFIRMADO' : status === 'cancelled' ? 'CANCELADO' : 'NOVO AGENDAMENTO'
+    if (status === 'signup') {
+      message = `
+━━━━━━━━━━━━━━━━━━━━
+🆕 *NOVO CLIENTE CADASTRADO — Barber Elite*
 
-    const message = `
+👤 *Nome:* ${name || '—'}
+📞 *Telefone:* ${phone || '—'}
+📧 *Acesso pelo site:* Sim
+━━━━━━━━━━━━━━━━━━━━
+      `.trim()
+    } else {
+      const statusEmoji =
+        status === 'confirmed' ? '✅' : status === 'cancelled' ? '❌' : '🕐'
+
+      const statusLabel =
+        status === 'confirmed' ? 'CONFIRMADO' : status === 'cancelled' ? 'CANCELADO' : 'NOVO AGENDAMENTO'
+
+      message = `
 ━━━━━━━━━━━━━━━━━━━━
 ✂️ *${statusLabel} — Barber Elite*
 
@@ -29,7 +42,8 @@ ${duration ? `⏱ *Duração:* ${duration} min\n` : ''}👨 *Barbeiro:* ${barber
 🕒 *Horário:* ${time || '—'}
 ${price ? `💰 *Valor:* ${price}\n` : ''}
 ━━━━━━━━━━━━━━━━━━━━
-    `.trim()
+      `.trim()
+    }
 
     const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
       method: 'POST',
