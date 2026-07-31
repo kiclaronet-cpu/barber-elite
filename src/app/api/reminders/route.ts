@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
-import { emailLayout, EMAIL_FROM, SITE_URL } from '@/lib/email/layout'
+import { emailLayout, SITE_URL } from '@/lib/email/layout'
+import { sendEmail } from '@/lib/email/send'
 
 const webpush = require('web-push')
 
@@ -127,18 +128,10 @@ export async function GET(request: Request) {
             `
           )
 
-          await fetch('https://api.resend.com/emails', {
-            method: 'POST',
-            headers: {
-              Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              from: EMAIL_FROM,
-              to: [appt.profile.email],
-              subject: 'Lembrete: seu corte na Barber Elite é em 1 hora!',
-              html,
-            }),
+          await sendEmail({
+            to: appt.profile.email,
+            subject: 'Lembrete: seu corte na Barber Elite é em 1 hora!',
+            html,
           })
         }
 

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
-import { emailLayout, EMAIL_FROM, SITE_URL } from '@/lib/email/layout'
+import { emailLayout, SITE_URL } from '@/lib/email/layout'
+import { sendEmail } from '@/lib/email/send'
 
 export async function POST(request: Request) {
   try {
@@ -36,24 +37,11 @@ export async function POST(request: Request) {
       `
     )
 
-    const res = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        from: EMAIL_FROM,
-        to: [email],
-        subject: `Bem-vindo à Barber Elite, ${firstName}!`,
-        html,
-      }),
+    await sendEmail({
+      to: email,
+      subject: `Bem-vindo à Barber Elite, ${firstName}!`,
+      html,
     })
-
-    if (!res.ok) {
-      const err = await res.text()
-      return NextResponse.json({ error: err }, { status: 500 })
-    }
 
     return NextResponse.json({ ok: true })
   } catch (err) {
