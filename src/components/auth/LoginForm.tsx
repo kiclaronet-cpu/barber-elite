@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Mail, Lock, Eye, EyeOff, Loader2, CheckCircle } from 'lucide-react'
+import { Mail, Lock, Eye, EyeOff, Loader2, CheckCircle, Link as LinkIcon } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 
 export default function LoginForm() {
@@ -17,6 +17,7 @@ export default function LoginForm() {
   const [resetMode, setResetMode] = useState(false)
   const [resetLoading, setResetLoading] = useState(false)
   const [resetSent, setResetSent] = useState(false)
+  const [resetLink, setResetLink] = useState('')
 
   const handleResetPassword = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -33,6 +34,16 @@ export default function LoginForm() {
       setResetLoading(false)
       return
     }
+
+    try {
+      const res = await fetch('/api/reset-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+      const data = await res.json()
+      if (data.link) setResetLink(data.link)
+    } catch {}
 
     setResetSent(true)
     setResetLoading(false)
@@ -154,6 +165,18 @@ export default function LoginForm() {
             <p className="text-sm text-silver/70">
               Email de recuperação enviado! Verifique sua caixa de entrada.
             </p>
+            {resetLink && (
+              <div className="w-full bg-white/5 border border-white/10 rounded-lg p-3 mt-2">
+                <p className="text-xs text-silver/50 mb-1">Link direto (se o email não chegar):</p>
+                <a
+                  href={resetLink}
+                  className="text-xs text-gold break-all hover:underline flex items-center gap-1"
+                >
+                  <LinkIcon className="w-3 h-3 shrink-0" />
+                  {resetLink}
+                </a>
+              </div>
+            )}
           </motion.div>
         ) : (
           <>
