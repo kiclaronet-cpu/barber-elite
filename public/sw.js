@@ -1,4 +1,4 @@
-const CACHE_NAME = "barber-elite-cache-v1";
+const CACHE_NAME = "barber-elite-cache-v2";
 
 const PRECACHE_URLS = [
   "/",
@@ -12,6 +12,7 @@ self.addEventListener("install", (event) => {
       return cache.addAll(PRECACHE_URLS);
     })
   );
+  self.skipWaiting();
 });
 
 self.addEventListener("activate", (event) => {
@@ -24,6 +25,7 @@ self.addEventListener("activate", (event) => {
       );
     })
   );
+  self.clients.claim();
 });
 
 self.addEventListener("fetch", (event) => {
@@ -50,6 +52,47 @@ self.addEventListener("fetch", (event) => {
         });
 
       return cachedResponse || fetchPromise;
+    })
+  );
+});
+
+self.addEventListener("push", (event) => {
+  let data = { title: "Barber Elite", body: "Você tem um novo aviso.", url: "/cliente" };
+
+  try {
+    if (event.data) {
+      data = { ...data, ...event.data.json() };
+    }
+  } catch (e) {}
+
+  const options = {
+    body: data.body,
+    icon: "/icons/icon-192.png",
+    badge: "/icons/icon-96.png",
+    vibrate: [100, 50, 100],
+    data: { url: data.url },
+    tag: data.tag || "barber-elite",
+    renotify: true,
+  };
+
+  event.waitUntil(self.registration.showNotification(data.title, options));
+});
+
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+
+  const url = event.notification.data?.url || "/cliente";
+
+  event.waitUntil(
+    clients.matchAll({ type: "window", includeUncontrolled: true }).then((windowClients) => {
+      for (const client of windowClients) {
+        if ("focus" in client) {
+          return client.focus();
+        }
+      }
+      if (clients.openWindow) {
+        return clients.openWindow(url);
+      }
     })
   );
 });

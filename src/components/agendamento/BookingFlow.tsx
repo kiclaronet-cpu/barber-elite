@@ -231,7 +231,7 @@ export default function BookingFlow({ onComplete }: BookingFlowProps) {
       try {
         const { data: profileData } = await supabase
           .from('profiles')
-          .select('name, email')
+          .select('name, email, phone')
           .eq('id', userData.user.id)
           .single();
 
@@ -244,6 +244,21 @@ export default function BookingFlow({ onComplete }: BookingFlowProps) {
             body: JSON.stringify({
               email: profileData.email,
               name: profileData.name || 'Cliente',
+              service: selectedService.name,
+              barber: selectedBarber.name,
+              date: displayDate,
+              time: selectedTime,
+              price: `R$ ${selectedService.price.toFixed(2).replace('.', ',')}`,
+              duration: selectedService.duration,
+              status: 'pending',
+            }),
+          }).catch(() => {});
+          fetch('/api/telegram/notify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name: profileData.name || 'Cliente',
+              phone: profileData.phone || '',
               service: selectedService.name,
               barber: selectedBarber.name,
               date: displayDate,
