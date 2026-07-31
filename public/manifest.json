@@ -1,6 +1,7 @@
 {
   "name": "Barber Elite",
   "short_name": "Barber Elite",
+  "id": "/",
   "description": "Agende seu horário na Barber Elite. Experiência premium em cuidados masculinos.",
   "start_url": "/",
   "display": "standalone",
