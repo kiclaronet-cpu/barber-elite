@@ -11,6 +11,7 @@ import {
   Users,
   DollarSign,
   Settings,
+  Bell,
   X,
   Menu,
 } from 'lucide-react';
@@ -30,6 +31,7 @@ const navItems: NavItem[] = [
   { label: 'Agendamentos', href: '/admin/agendamentos', icon: <Calendar size={20} /> },
   { label: 'Clientes', href: '/admin/clientes', icon: <Users size={20} /> },
   { label: 'Financeiro', href: '/admin/financeiro', icon: <DollarSign size={20} /> },
+  { label: 'Notificações', href: '/admin/push', icon: <Bell size={20} /> },
   { label: 'Configurações', href: '/admin/configuracoes', icon: <Settings size={20} /> },
 ];
 
