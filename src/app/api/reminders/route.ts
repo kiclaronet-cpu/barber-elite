@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { emailLayout, SITE_URL } from '@/lib/email/layout'
 import { sendEmail } from '@/lib/email/send'
+import { timingSafeEqual } from 'crypto'
 
 const webpush = require('web-push')
 
@@ -17,8 +18,12 @@ export async function GET(request: Request) {
     process.env.VAPID_PRIVATE_KEY
   )
 
-  const secret = new URL(request.url).searchParams.get('secret')
-  if (secret !== process.env.CRON_SECRET) {
+  const secret = new URL(request.url).searchParams.get('secret') || ''
+  const expected = process.env.CRON_SECRET || ''
+  const a = Buffer.from(secret)
+  const b = Buffer.from(expected)
+  const valid = a.length === b.length && b.length > 0 && timingSafeEqual(a, b)
+  if (!valid) {
     return NextResponse.json({ error: 'Não autorizado' }, { status: 401 })
   }
 
