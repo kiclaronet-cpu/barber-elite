@@ -76,7 +76,19 @@ export default function BookingFlow({ onComplete }: BookingFlowProps) {
       ]);
 
       if (servicesRes.data) setServices(servicesRes.data as Service[]);
-      if (barbersRes.data) setBarbers(barbersRes.data as Barber[]);
+      if (barbersRes.data) {
+        setBarbers(barbersRes.data as Barber[]);
+
+        const params = new URLSearchParams(window.location.search);
+        const presetBarber = params.get('barber');
+        if (presetBarber) {
+          const match = (barbersRes.data as Barber[]).find((b) => b.id === presetBarber);
+          if (match) {
+            setSelectedBarber(match);
+            setCurrentStep(2);
+          }
+        }
+      }
       if (hoursRes.data) {
         const map: Record<number, { open_time: string | null; close_time: string | null; closed: boolean }> = {};
         hoursRes.data.forEach((h: any) => {
