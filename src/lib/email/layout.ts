@@ -1,5 +1,3 @@
-export const EMAIL_FROM = 'Barber Elite <onboarding@resend.dev>';
-
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://barber-elite-five.vercel.app';
 
 export function emailLayout(title: string, body: string): string {

@@ -22,8 +22,13 @@ export async function sendEmail({
 }) {
   await transporter.sendMail({
     from: `Barber Elite <${GMAIL_USER}>`,
+    replyTo: GMAIL_USER,
     to,
     subject,
     html,
+    headers: {
+      'List-Unsubscribe': `<mailto:${GMAIL_USER}?subject=unsubscribe>`,
+      'X-Priority': '3',
+    },
   })
 }
